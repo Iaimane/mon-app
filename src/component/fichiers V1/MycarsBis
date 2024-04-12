@@ -1,0 +1,54 @@
+import React, { Component } from 'react';
+import Cars from './Cars';
+import MyHeader from '../MyHeader';
+import Wrapper from '../Wrapper';
+
+class Mycars extends Component {
+    addStyle = (e) => {
+        console.log(e.target);
+
+        if (e.target.classList.contains('styled')){
+            e.target.classList.remove('styled'); 
+        } else {
+            e.target.classList.add('styled')
+        }
+    }
+
+    noCopy = () => {
+        alert('On avait dit de ne pas copier ce texte !')
+    }
+
+    state = {
+        cars: ['Ford', 'Mercedes', 'Renault', 'Ferrari'],
+        colorCar: ['Red', 'Black', 'Green'] 
+    }
+
+    render(){
+        return (
+    <div>
+        <h1 onMouseOver={this.addStyle}>{this.props.title}</h1>
+        <Wrapper>
+            <MyHeader myStyle={this.props.color}>
+                {this.props.title}
+                <p onCopy={this.noCopy}>Texte à ne pas copier</p>
+            </MyHeader>
+        </Wrapper> 
+
+        <Cars color={this.state.colorCar[0]}>{this.state.cars[0]}</Cars>
+        <Cars color={this.state.colorCar[1]}>{this.state.cars[1]}</Cars>
+        <Cars color={this.state.colorCar[-1]}>{this.state.cars[2]}</Cars>
+        <Cars>{this.state.cars[3]}</Cars>
+        <Cars color={this.state.colorCar[2]}>{this.state.cars[1]}</Cars>
+        <Cars color='purple'>{this.state.cars[3]}</Cars>
+        <Cars/>
+
+        <MyHeader myStyle={this.props.color}>
+            Bonjour
+        </MyHeader>
+    </div>
+    )
+    }
+
+}
+
+export default Mycars

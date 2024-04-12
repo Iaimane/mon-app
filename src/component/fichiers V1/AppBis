@@ -1,0 +1,55 @@
+import React, { Component } from 'react';
+import './App.css';
+import Mycars from '../Mycars';
+
+
+class App extends Component {
+
+  changeTitle = (e) => {
+    this.setState({
+      titre: 'Mon nouveau titre'
+    })
+  }
+
+  changeViaParam = (param) => {
+    this.setState({
+      titre: param
+    })
+  }
+
+  changeViaBind = (param) => {
+    this.setState({
+      titre: param
+    })
+  }
+
+  changeViaInput = (e) => {
+    this.setState({
+      titre: e.target.value
+    })
+  }
+
+  state = {
+    titre: 'Mon super site de voiture',
+    color: 'brown',
+  }
+
+  render(){
+  return (
+    <div className="App">
+      <button onClick={this.changeTitle}>Change le H1</button>
+      <Mycars 
+      title={this.state.titre}
+      color={this.state.color}/>
+
+      
+      <button onClick={() => this.changeViaParam('Titre via un param')}>Changer le H1 via le param</button>
+      <button onClick={this.changeViaBind.bind(this, 'Titre via le bind')}>Changer le H1 via le bind</button>
+      <p>Input qui permet de changer le titre</p>
+      <input type="text" onChange={this.changeViaInput} value={this.state.titre} />
+    </div>
+  );
+}
+}
+export default App;
+
